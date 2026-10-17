@@ -32,6 +32,9 @@
         "$TURBO_ROOT$/Directory.Packages.props",
         "$TURBO_ROOT$/.editorconfig",
         "$TURBO_ROOT$/tests/**",
+        "!$TURBO_ROOT$/tests/**/bin/**",
+        "!$TURBO_ROOT$/tests/**/obj/**",
+        "!$TURBO_ROOT$/tests/**/TestResults/**",
         "$TURBO_ROOT$/ManzilTech.slnx"
       ],
       "outputs": []

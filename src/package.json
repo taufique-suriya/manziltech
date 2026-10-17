@@ -5,6 +5,6 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "dotnet publish ManzilTech.Host/ManzilTech.Host.csproj -c Release -o publish",
-    "test": "dotnet test ../ManzilTech.slnx -c Release"
+    "test": "dotnet test --solution ../ManzilTech.slnx -c Release"
   }
 }

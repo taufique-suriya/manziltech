@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Platform\Common\ManzilTech.Common\ManzilTech.Common.csproj" />
+  </ItemGroup>
+
+</Project>

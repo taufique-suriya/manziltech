@@ -25,4 +25,12 @@
     <Project Path="src/Products/Studio/ManzilTech.Studio.Contracts/ManzilTech.Studio.Contracts.csproj" />
     <Project Path="src/Products/Studio/ManzilTech.Studio/ManzilTech.Studio.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ManzilTech.ArchitectureTests/ManzilTech.ArchitectureTests.csproj" />
+    <Project Path="tests/ManzilTech.Bookings.Tests/ManzilTech.Bookings.Tests.csproj" />
+    <Project Path="tests/ManzilTech.Common.Tests/ManzilTech.Common.Tests.csproj" />
+    <Project Path="tests/ManzilTech.HajjAndUmrah.Tests/ManzilTech.HajjAndUmrah.Tests.csproj" />
+    <Project Path="tests/ManzilTech.Payments.Tests/ManzilTech.Payments.Tests.csproj" />
+    <Project Path="tests/ManzilTech.Studio.Tests/ManzilTech.Studio.Tests.csproj" />
+  </Folder>
 </Solution>

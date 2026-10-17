@@ -17,14 +17,19 @@ docs/       functional docs (setup, architecture, database)
 
 Each module is two projects: `ManzilTech.<Name>` (implementation) and `ManzilTech.<Name>.Contracts` (its public surface).
 
-## Boundary rules (architecture tests will enforce these)
+## Boundary rules
 
-1. Frontend apps never import from each other, only from `packages/`.
-2. Other modules may reference only a module's `.Contracts` project, never its implementation.
-3. Every module owns one DbContext, one schema and its migrations. The migration history table lives in that schema. No module reads another module's tables.
-4. Platform modules never reference products.
-5. Contracts projects do not reference each other. Shared types go in SharedKernel.
-6. Payments owns money only. Each product owns its own booking or order data.
+Rule 1 is enforced by ESLint; rules 2–6 by `tests/ManzilTech.ArchitectureTests` (project files and compiled types).
+
+1. Frontend apps never import from each other, only from `packages/`. Inside an app, import with `@/`, not `../`.
+2. Only `ManzilTech.Host` (the composition root) references module implementations. Every other project may reference only a module's `.Contracts`.
+3. Platform modules may use other platform modules' Contracts and never reference products. Products may use any module's Contracts.
+4. Contracts reference only SharedKernel (no other projects, no packages). SharedKernel references nothing.
+5. Every module has exactly one `internal` DbContext on its own lowercase schema, with the migration history table in that schema. No module reads another module's tables.
+6. Nothing references the host, and every project under `src/` sits in a known place (`ManzilTech.Host`, `ManzilTech.SharedKernel`, or `{Platform|Products}/<Module>/ManzilTech.<Module>[.Contracts]`).
+
+Payments owns money only. Each product owns its own booking or order data.
+Prefer events and coarse-grained calls between modules. No transaction spans two modules.
 
 ## Naming and casing
 

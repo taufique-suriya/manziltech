@@ -13,4 +13,8 @@
     <ProjectReference Include="..\..\..\ManzilTech.SharedKernel\ManzilTech.SharedKernel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="ManzilTech.HajjAndUmrah.Tests" />
+  </ItemGroup>
+
 </Project>
