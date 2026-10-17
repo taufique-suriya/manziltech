@@ -282,6 +282,9 @@ importers:
 
   apps/hub:
     dependencies:
+      '@manziltech/design-tokens':
+        specifier: workspace:*
+        version: link:../../packages/design-tokens
       '@manziltech/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -420,6 +423,8 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
+
+  src: {}
 
 packages:
 

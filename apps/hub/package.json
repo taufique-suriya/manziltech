@@ -12,6 +12,7 @@
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@manziltech/design-tokens": "workspace:*",
     "@manziltech/ui": "workspace:*",
     "next": "catalog:",
     "react": "catalog:",
