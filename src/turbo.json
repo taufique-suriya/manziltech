@@ -1,0 +1,40 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "extends": [
+    "//"
+  ],
+  "tasks": {
+    "build": {
+      "inputs": [
+        "**",
+        "!**/bin/**",
+        "!**/obj/**",
+        "!publish/**",
+        "!.turbo/**",
+        "$TURBO_ROOT$/global.json",
+        "$TURBO_ROOT$/Directory.Build.props",
+        "$TURBO_ROOT$/Directory.Packages.props",
+        "$TURBO_ROOT$/.editorconfig"
+      ],
+      "outputs": [
+        "publish/**"
+      ]
+    },
+    "test": {
+      "inputs": [
+        "**",
+        "!**/bin/**",
+        "!**/obj/**",
+        "!publish/**",
+        "!.turbo/**",
+        "$TURBO_ROOT$/global.json",
+        "$TURBO_ROOT$/Directory.Build.props",
+        "$TURBO_ROOT$/Directory.Packages.props",
+        "$TURBO_ROOT$/.editorconfig",
+        "$TURBO_ROOT$/tests/**",
+        "$TURBO_ROOT$/ManzilTech.slnx"
+      ],
+      "outputs": []
+    }
+  }
+}

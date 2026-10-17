@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Technical base types only, no business data. References no module. -->
+
+</Project>
