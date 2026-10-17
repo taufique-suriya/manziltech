@@ -1,0 +1,42 @@
+# .NET
+bin/
+obj/
+publish/
+TestResults/
+*.user
+*.suo
+*.rsuser
+.vs/
+
+# Node, Next.js, Turborepo
+node_modules/
+.next/
+out/
+dist/
+coverage/
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
+.pnpm-store/
+
+# Secrets and local settings (use .NET user-secrets)
+.env
+.env.*
+!.env.example
+appsettings.*.local.json
+secrets.json
+*.pfx
+*.key
+
+# Local AI and editor settings
+CLAUDE.local.md
+.claude/settings.local.json
+.cursor/
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# OS and logs
+.DS_Store
+Thumbs.db
+*.log
