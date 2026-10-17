@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Products\Bookings\ManzilTech.Bookings\ManzilTech.Bookings.csproj" />
+  </ItemGroup>
+
+</Project>

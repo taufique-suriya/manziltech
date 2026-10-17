@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ManzilTech.HajjAndUmrah.Contracts\ManzilTech.HajjAndUmrah.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\ManzilTech.SharedKernel\ManzilTech.SharedKernel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ManzilTech.HajjAndUmrah.Tests" />
+  </ItemGroup>
+
+</Project>

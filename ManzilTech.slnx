@@ -1,0 +1,36 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ManzilTech.Host/ManzilTech.Host.csproj" />
+    <Project Path="src/ManzilTech.SharedKernel/ManzilTech.SharedKernel.csproj" />
+  </Folder>
+  <Folder Name="/src/Platform/" />
+  <Folder Name="/src/Platform/Common/">
+    <Project Path="src/Platform/Common/ManzilTech.Common.Contracts/ManzilTech.Common.Contracts.csproj" />
+    <Project Path="src/Platform/Common/ManzilTech.Common/ManzilTech.Common.csproj" />
+  </Folder>
+  <Folder Name="/src/Platform/Payments/">
+    <Project Path="src/Platform/Payments/ManzilTech.Payments.Contracts/ManzilTech.Payments.Contracts.csproj" />
+    <Project Path="src/Platform/Payments/ManzilTech.Payments/ManzilTech.Payments.csproj" />
+  </Folder>
+  <Folder Name="/src/Products/" />
+  <Folder Name="/src/Products/Bookings/">
+    <Project Path="src/Products/Bookings/ManzilTech.Bookings.Contracts/ManzilTech.Bookings.Contracts.csproj" />
+    <Project Path="src/Products/Bookings/ManzilTech.Bookings/ManzilTech.Bookings.csproj" />
+  </Folder>
+  <Folder Name="/src/Products/HajjAndUmrah/">
+    <Project Path="src/Products/HajjAndUmrah/ManzilTech.HajjAndUmrah.Contracts/ManzilTech.HajjAndUmrah.Contracts.csproj" />
+    <Project Path="src/Products/HajjAndUmrah/ManzilTech.HajjAndUmrah/ManzilTech.HajjAndUmrah.csproj" />
+  </Folder>
+  <Folder Name="/src/Products/Studio/">
+    <Project Path="src/Products/Studio/ManzilTech.Studio.Contracts/ManzilTech.Studio.Contracts.csproj" />
+    <Project Path="src/Products/Studio/ManzilTech.Studio/ManzilTech.Studio.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ManzilTech.ArchitectureTests/ManzilTech.ArchitectureTests.csproj" />
+    <Project Path="tests/ManzilTech.Bookings.Tests/ManzilTech.Bookings.Tests.csproj" />
+    <Project Path="tests/ManzilTech.Common.Tests/ManzilTech.Common.Tests.csproj" />
+    <Project Path="tests/ManzilTech.HajjAndUmrah.Tests/ManzilTech.HajjAndUmrah.Tests.csproj" />
+    <Project Path="tests/ManzilTech.Payments.Tests/ManzilTech.Payments.Tests.csproj" />
+    <Project Path="tests/ManzilTech.Studio.Tests/ManzilTech.Studio.Tests.csproj" />
+  </Folder>
+</Solution>

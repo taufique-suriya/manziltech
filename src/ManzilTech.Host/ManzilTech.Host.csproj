@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!-- Composition root: the only project that references module implementations. -->
+
+  <PropertyGroup>
+    <UserSecretsId>manziltech-host</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ManzilTech.SharedKernel\ManzilTech.SharedKernel.csproj" />
+    <ProjectReference Include="..\Platform\Common\ManzilTech.Common\ManzilTech.Common.csproj" />
+    <ProjectReference Include="..\Platform\Payments\ManzilTech.Payments\ManzilTech.Payments.csproj" />
+    <ProjectReference Include="..\Products\HajjAndUmrah\ManzilTech.HajjAndUmrah\ManzilTech.HajjAndUmrah.csproj" />
+    <ProjectReference Include="..\Products\Bookings\ManzilTech.Bookings\ManzilTech.Bookings.csproj" />
+    <ProjectReference Include="..\Products\Studio\ManzilTech.Studio\ManzilTech.Studio.csproj" />
+  </ItemGroup>
+
+</Project>

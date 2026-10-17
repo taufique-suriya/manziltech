@@ -1,0 +1,10 @@
+{
+  "name": "@manziltech/backend",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "dotnet publish ManzilTech.Host/ManzilTech.Host.csproj -c Release -o publish",
+    "test": "dotnet test --solution ../ManzilTech.slnx -c Release"
+  }
+}

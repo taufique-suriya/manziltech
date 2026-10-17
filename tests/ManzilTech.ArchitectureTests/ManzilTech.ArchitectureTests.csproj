@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="TngTech.ArchUnitNET.xUnitV3" />
+  </ItemGroup>
+
+  <!-- Every src project except the host, so their assemblies can be loaded for the type-level rules. -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ManzilTech.SharedKernel\ManzilTech.SharedKernel.csproj" />
+    <ProjectReference Include="..\..\src\Platform\Common\ManzilTech.Common\ManzilTech.Common.csproj" />
+    <ProjectReference Include="..\..\src\Platform\Common\ManzilTech.Common.Contracts\ManzilTech.Common.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\Platform\Payments\ManzilTech.Payments\ManzilTech.Payments.csproj" />
+    <ProjectReference Include="..\..\src\Platform\Payments\ManzilTech.Payments.Contracts\ManzilTech.Payments.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\Products\HajjAndUmrah\ManzilTech.HajjAndUmrah\ManzilTech.HajjAndUmrah.csproj" />
+    <ProjectReference Include="..\..\src\Products\HajjAndUmrah\ManzilTech.HajjAndUmrah.Contracts\ManzilTech.HajjAndUmrah.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\Products\Bookings\ManzilTech.Bookings\ManzilTech.Bookings.csproj" />
+    <ProjectReference Include="..\..\src\Products\Bookings\ManzilTech.Bookings.Contracts\ManzilTech.Bookings.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\Products\Studio\ManzilTech.Studio\ManzilTech.Studio.csproj" />
+    <ProjectReference Include="..\..\src\Products\Studio\ManzilTech.Studio.Contracts\ManzilTech.Studio.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

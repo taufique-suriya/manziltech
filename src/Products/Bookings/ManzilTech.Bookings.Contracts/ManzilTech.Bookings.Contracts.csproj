@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- The only part of the Bookings module that other modules may reference. -->
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\ManzilTech.SharedKernel\ManzilTech.SharedKernel.csproj" />
+  </ItemGroup>
+
+</Project>
