@@ -3,12 +3,14 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 // Boundary rule 1: apps never import from each other, only from packages/.
-const appPackages = [
-  "@manziltech/hub",
-  "@manziltech/hajjandumrah",
-  "@manziltech/bookings",
-  "@manziltech/studio",
-];
+const message = "Apps must not import from other apps. Move shared code to packages/.";
+
+export const restrictedImports = {
+  paths: ["@manziltech/hub", "@manziltech/hajjandumrah", "@manziltech/bookings", "@manziltech/studio"].map(
+    (name) => ({ name, message }),
+  ),
+  patterns: [{ group: ["**/apps/*", "**/apps/*/**"], message }],
+};
 
 export default tseslint.config(
   { ignores: ["**/dist/**", "**/.next/**", "**/node_modules/**", "**/.turbo/**"] },
@@ -19,21 +21,7 @@ export default tseslint.config(
       globals: { ...globals.browser, ...globals.node },
     },
     rules: {
-      "no-restricted-imports": [
-        "error",
-        {
-          paths: appPackages.map((name) => ({
-            name,
-            message: "Apps must not import from other apps. Move shared code to packages/.",
-          })),
-          patterns: [
-            {
-              group: ["**/apps/*", "**/apps/*/**"],
-              message: "Apps must not import from other apps. Move shared code to packages/.",
-            },
-          ],
-        },
-      ],
+      "no-restricted-imports": ["error", restrictedImports],
     },
   },
 );
