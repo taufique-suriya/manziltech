@@ -1,0 +1,9 @@
+# Copy to terraform.tfvars (git-ignored) and fill in. Or set TF_VAR_subscription_id instead.
+subscription_id = "00000000-0000-0000-0000-000000000000"
+
+# Added after the DNS records exist at the DNS host (see infra/README.md, step 'Custom domains').
+# custom_domains = {
+#   hajjandumrah = [{ domain_name = "hajjandumrah.manziltech.com" }]
+#   bookings     = [{ domain_name = "bookings.manziltech.com" }]
+#   studio       = [{ domain_name = "studio.manziltech.com" }]
+# }

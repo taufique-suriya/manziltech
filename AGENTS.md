@@ -12,6 +12,7 @@ src/
   Platform/                  Common, Payments
   Products/                  HajjAndUmrah, Bookings, Studio
 tests/      ManzilTech.ArchitectureTests + one test project per module
+infra/      Terraform for Azure (production; staging later), see infra/README.md
 docs/       functional docs (setup, architecture, database)
 ```
 
