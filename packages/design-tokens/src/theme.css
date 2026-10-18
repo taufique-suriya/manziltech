@@ -23,6 +23,7 @@
   --mt-hajjandumrah-warm: #c39033;
   --mt-hajjandumrah-tint: #e3f3ea;
   --mt-bookings: #2f8fd0;
+  --mt-bookings-strong: #1f6fa6;
   --mt-bookings-tint: #e3f1fb;
   --mt-studio: #5a5ad6;
   --mt-studio-tint: #e8e8fb;
@@ -57,6 +58,7 @@
     --mt-hajjandumrah-warm: #d9ac55;
     --mt-hajjandumrah-tint: #10342a;
     --mt-bookings: #5aaee6;
+    --mt-bookings-strong: #8cc8f0;
     --mt-bookings-tint: #0f2e45;
     --mt-studio: #8b8bf0;
     --mt-studio-tint: #24244d;
@@ -92,6 +94,7 @@
   --color-hajjandumrah-warm: var(--mt-hajjandumrah-warm);
   --color-hajjandumrah-tint: var(--mt-hajjandumrah-tint);
   --color-bookings: var(--mt-bookings);
+  --color-bookings-strong: var(--mt-bookings-strong);
   --color-bookings-tint: var(--mt-bookings-tint);
   --color-studio: var(--mt-studio);
   --color-studio-tint: var(--mt-studio-tint);

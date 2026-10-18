@@ -26,7 +26,10 @@ export type SiteShellProps = {
   nav: readonly NavItem[];
   cta?: NavItem;
   footerColumns?: readonly FooterColumn[];
+  // Extra footer cells after the link columns (contact details, newsletter, ...).
+  footerAside?: ReactNode;
   footerNote?: ReactNode;
+  tagline?: ReactNode;
   // Apps pass their router's link (next/link) so the package stays framework-free.
   link?: ComponentType<LinkProps>;
   children: ReactNode;
@@ -41,7 +44,16 @@ function PlainLink({ href, children, className }: LinkProps) {
 }
 
 // Header, main and footer shared by every app (decision 0008).
-export function SiteShell({ nav, cta, footerColumns = [], footerNote, link = PlainLink, children }: SiteShellProps) {
+export function SiteShell({
+  nav,
+  cta,
+  footerColumns = [],
+  footerAside,
+  footerNote,
+  tagline = "Travel and technology under one brand. Built in India.",
+  link = PlainLink,
+  children,
+}: SiteShellProps) {
   const Link = link;
   const NavLink = ({ item, className }: { item: NavItem; className: string }) =>
     item.external ? (
@@ -104,7 +116,7 @@ export function SiteShell({ nav, cta, footerColumns = [], footerNote, link = Pla
             <Link href="/" className="text-xl text-white">
               <Wordmark />
             </Link>
-            <p className="max-w-xs text-sm leading-relaxed">Travel and technology under one brand. Built in India.</p>
+            <p className="max-w-xs text-sm leading-relaxed">{tagline}</p>
           </div>
           {footerColumns.map((column) => (
             <div key={column.title}>
@@ -118,6 +130,7 @@ export function SiteShell({ nav, cta, footerColumns = [], footerNote, link = Pla
               </ul>
             </div>
           ))}
+          {footerAside}
         </Container>
         <div className="border-t border-night-line">
           <Container className="py-6 font-mono text-xs">{footerNote}</Container>
