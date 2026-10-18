@@ -1,0 +1,130 @@
+/*
+ * ManzilTech design tokens (decision 0008). The single source for colour, type and radius.
+ * Apps import this after Tailwind: raw values live in --mt-* variables (light and dark),
+ * and the @theme block maps them to Tailwind utilities such as bg-brand or text-ink.
+ * An app sets its product accent by overriding --mt-accent, --mt-accent-strong and --mt-accent-tint.
+ */
+
+:root {
+  --mt-ink: #0b2230;
+  --mt-ink-soft: #24414f;
+  --mt-muted: #587180;
+  --mt-line: #d3e2e7;
+  --mt-mist: #f1f7f8;
+  --mt-paper: #ffffff;
+
+  --mt-brand: #0b8a8f;
+  --mt-brand-strong: #076c72;
+  --mt-brand-tint: #d9f3f2;
+  --mt-signal: #1fb8cf;
+  --mt-on-brand: #ffffff;
+
+  --mt-hajjandumrah: #1d8457;
+  --mt-hajjandumrah-warm: #c39033;
+  --mt-hajjandumrah-tint: #e3f3ea;
+  --mt-bookings: #2f8fd0;
+  --mt-bookings-tint: #e3f1fb;
+  --mt-studio: #5a5ad6;
+  --mt-studio-tint: #e8e8fb;
+
+  /* Footer and other always-dark surfaces keep the same values in both themes. */
+  --mt-night: #0b2230;
+  --mt-night-line: #1f3a47;
+  --mt-night-text: #b9cdd5;
+
+  /* Product accent; the hub uses the brand teal. */
+  --mt-accent: var(--mt-brand);
+  --mt-accent-strong: var(--mt-brand-strong);
+  --mt-accent-tint: var(--mt-brand-tint);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mt-ink: #e6f1f4;
+    --mt-ink-soft: #b9cdd5;
+    --mt-muted: #87a0ad;
+    --mt-line: #1f3a47;
+    --mt-mist: #0f2733;
+    --mt-paper: #081a24;
+
+    --mt-brand: #2bb3b4;
+    --mt-brand-strong: #5fd0cf;
+    --mt-brand-tint: #0f3a3f;
+    --mt-signal: #4fd6ea;
+    --mt-on-brand: #04161d;
+
+    --mt-hajjandumrah: #3fb47e;
+    --mt-hajjandumrah-warm: #d9ac55;
+    --mt-hajjandumrah-tint: #10342a;
+    --mt-bookings: #5aaee6;
+    --mt-bookings-tint: #0f2e45;
+    --mt-studio: #8b8bf0;
+    --mt-studio-tint: #24244d;
+
+    --mt-night: #051219;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  /* Brand colours only: the default Tailwind palette is switched off. */
+  --color-*: initial;
+  --color-white: #ffffff;
+
+  --color-ink: var(--mt-ink);
+  --color-ink-soft: var(--mt-ink-soft);
+  --color-muted: var(--mt-muted);
+  --color-line: var(--mt-line);
+  --color-mist: var(--mt-mist);
+  --color-paper: var(--mt-paper);
+
+  --color-brand: var(--mt-brand);
+  --color-brand-strong: var(--mt-brand-strong);
+  --color-brand-tint: var(--mt-brand-tint);
+  --color-signal: var(--mt-signal);
+  --color-on-brand: var(--mt-on-brand);
+
+  --color-accent: var(--mt-accent);
+  --color-accent-strong: var(--mt-accent-strong);
+  --color-accent-tint: var(--mt-accent-tint);
+
+  --color-hajjandumrah: var(--mt-hajjandumrah);
+  --color-hajjandumrah-warm: var(--mt-hajjandumrah-warm);
+  --color-hajjandumrah-tint: var(--mt-hajjandumrah-tint);
+  --color-bookings: var(--mt-bookings);
+  --color-bookings-tint: var(--mt-bookings-tint);
+  --color-studio: var(--mt-studio);
+  --color-studio-tint: var(--mt-studio-tint);
+
+  --color-night: var(--mt-night);
+  --color-night-line: var(--mt-night-line);
+  --color-night-text: var(--mt-night-text);
+
+  /* Apps load the faces with next/font and set these three variables. */
+  --font-display: var(--mt-font-display), "Segoe UI", system-ui, sans-serif;
+  --font-sans: var(--mt-font-sans), "Segoe UI", system-ui, sans-serif;
+  --font-mono: var(--mt-font-mono), ui-monospace, Consolas, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+@layer base {
+  html {
+    background-color: var(--mt-paper);
+    color: var(--mt-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--mt-signal);
+    outline-offset: 2px;
+  }
+}

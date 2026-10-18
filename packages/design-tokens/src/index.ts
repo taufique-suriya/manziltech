@@ -1,4 +1,5 @@
-// Placeholder. Branding is not decided yet, so there are no real tokens.
-export const tokens = {} as const;
+// The tokens themselves live in theme.css (decision 0008). This module only
+// names the product accents so TypeScript code can refer to them safely.
+export const productAccents = ["brand", "hajjandumrah", "bookings", "studio"] as const;
 
-export type Tokens = typeof tokens;
+export type ProductAccent = (typeof productAccents)[number];

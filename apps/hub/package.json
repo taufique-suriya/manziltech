@@ -12,6 +12,7 @@
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@manziltech/design-tokens": "workspace:*",
     "@manziltech/ui": "workspace:*",
     "next": "catalog:",
     "react": "catalog:",
@@ -19,10 +20,12 @@
   },
   "devDependencies": {
     "@manziltech/config": "workspace:*",
+    "@tailwindcss/postcss": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "eslint": "catalog:",
+    "tailwindcss": "catalog:",
     "typescript": "catalog:"
   }
 }
