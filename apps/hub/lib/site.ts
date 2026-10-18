@@ -19,7 +19,7 @@ export type Product = {
 };
 
 // Each product runs on its own subdomain. URLs come from env so local, staging
-// and production differ only in configuration; the defaults are the local dev ports.
+// and production differ only in configuration; the defaults (also used when a variable is empty) are the local dev ports.
 export const products: readonly Product[] = [
   {
     id: "hajjandumrah",
@@ -30,21 +30,21 @@ export const products: readonly Product[] = [
       "Book with the agent you choose, through one secure checkout",
       "Agents manage their listings and bookings in one place",
     ],
-    url: process.env.NEXT_PUBLIC_HAJJANDUMRAH_URL ?? "http://localhost:3001",
+    url: process.env.NEXT_PUBLIC_HAJJANDUMRAH_URL || "http://localhost:3001",
   },
   {
     id: "bookings",
     name: "Bookings",
     summary: "Hotels and travel, booked simply.",
     features: ["Search and compare stays", "Clear prices before you book", "Your trips in one account"],
-    url: process.env.NEXT_PUBLIC_BOOKINGS_URL ?? "http://localhost:3002",
+    url: process.env.NEXT_PUBLIC_BOOKINGS_URL || "http://localhost:3002",
   },
   {
     id: "studio",
     name: "Studio",
     summary: "Software and tech services, specialising in travel: AI-rich web and mobile apps, integrations and automation.",
     features: ["AI-rich web and Android apps", "Travel API integrations", "Custom software and process automation"],
-    url: process.env.NEXT_PUBLIC_STUDIO_URL ?? "http://localhost:3003",
+    url: process.env.NEXT_PUBLIC_STUDIO_URL || "http://localhost:3003",
   },
 ];
 

@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   title: { default: `${brand}: travel and technology`, template: `%s | ${brand}` },
   description:
     "ManzilTech brings together a Hajj and Umrah marketplace, travel and hotel bookings, and software development services.",
+  // Only production may be indexed; local and staging builds stay out of search engines.
+  robots: process.env.NEXT_PUBLIC_SITE_ENV === "prd" ? undefined : { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
