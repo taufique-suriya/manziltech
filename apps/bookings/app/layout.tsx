@@ -16,6 +16,8 @@ const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variabl
 export const metadata: Metadata = {
   title: { default: `Bookings | ${brand}`, template: `%s | ${brand} Bookings` },
   description: "Destinations and all-inclusive travel packages from ManzilTech.",
+  // Only production may be indexed; local and staging builds stay out of search engines.
+  robots: process.env.NEXT_PUBLIC_SITE_ENV === "prd" ? undefined : { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

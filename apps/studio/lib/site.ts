@@ -1,8 +1,8 @@
 import type { FooterColumn, NavItem } from "@manziltech/ui";
 
-export const hubUrl = process.env.NEXT_PUBLIC_HUB_URL ?? "http://localhost:3000";
-const hajjUrl = process.env.NEXT_PUBLIC_HAJJANDUMRAH_URL ?? "http://localhost:3001";
-const bookingsUrl = process.env.NEXT_PUBLIC_BOOKINGS_URL ?? "http://localhost:3002";
+export const hubUrl = process.env.NEXT_PUBLIC_HUB_URL || "http://localhost:3000";
+const hajjUrl = process.env.NEXT_PUBLIC_HAJJANDUMRAH_URL || "http://localhost:3001";
+const bookingsUrl = process.env.NEXT_PUBLIC_BOOKINGS_URL || "http://localhost:3002";
 
 export const contactUrl = `${hubUrl}/contact`;
 

@@ -14,6 +14,8 @@ const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variabl
 export const metadata: Metadata = {
   title: "Hajj and Umrah | ManzilTech",
   description: "Compare Hajj and Umrah packages from travel agents and enquire with the one you choose.",
+  // Only production may be indexed; local and staging builds stay out of search engines.
+  robots: process.env.NEXT_PUBLIC_SITE_ENV === "prd" ? undefined : { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
