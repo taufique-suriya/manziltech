@@ -26,7 +26,7 @@ export default function ContactPage() {
                 {contactEmail}
               </a>
             ) : (
-              <p className="text-ink-soft">Our contact details will be published here soon.</p>
+              <p className="text-ink-soft">Pick the product you need and reach the right team directly.</p>
             )}
           </div>
           <div className="grid gap-4 sm:grid-cols-3">

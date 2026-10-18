@@ -1,3 +1,4 @@
+import { ProductMark } from "@manziltech/ui";
 import { accentClasses, type Product } from "@/lib/site";
 
 type ProductCardProps = {
@@ -13,10 +14,7 @@ export function ProductCard({ product, detailed = false }: ProductCardProps) {
     <article
       className={`grid content-start gap-4 rounded-lg border border-line bg-paper p-6 transition-colors duration-300 ${accent.border}`}
     >
-      <div className="flex items-center justify-between gap-3">
-        <span className={`size-9 rounded-md ${accent.bg}`} aria-hidden="true" />
-        <span className={`rounded-sm px-2 py-1 font-mono text-xs ${accent.tint} ${accent.text}`}>In development</span>
-      </div>
+      <ProductMark product={product.id} className="text-[1.4rem]" />
       <h3 className="text-xl font-semibold">{product.name}</h3>
       <p className="text-ink-soft">{product.summary}</p>
       {detailed && (

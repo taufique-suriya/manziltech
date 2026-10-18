@@ -25,6 +25,8 @@ export type LinkProps = {
 export type SiteShellProps = {
   nav: readonly NavItem[];
   cta?: NavItem;
+  // Product sites: the first menu item, linking back to the ManzilTech hub.
+  parent?: NavItem;
   footerColumns?: readonly FooterColumn[];
   // Extra footer cells after the link columns (contact details, newsletter, ...).
   footerAside?: ReactNode;
@@ -43,10 +45,19 @@ function PlainLink({ href, children, className }: LinkProps) {
   );
 }
 
+function BackArrow() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-4" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 12H5M11 6l-6 6 6 6" />
+    </svg>
+  );
+}
+
 // Header, main and footer shared by every app (decision 0008).
 export function SiteShell({
   nav,
   cta,
+  parent,
   footerColumns = [],
   footerAside,
   footerNote,
@@ -55,14 +66,14 @@ export function SiteShell({
   children,
 }: SiteShellProps) {
   const Link = link;
-  const NavLink = ({ item, className }: { item: NavItem; className: string }) =>
+  const NavLink = ({ item, className, children: content }: { item: NavItem; className: string; children?: ReactNode }) =>
     item.external ? (
       <a href={item.href} className={className}>
-        {item.label}
+        {content ?? item.label}
       </a>
     ) : (
       <Link href={item.href} className={className}>
-        {item.label}
+        {content ?? item.label}
       </Link>
     );
 
@@ -73,11 +84,19 @@ export function SiteShell({
           <Link href="/" className="text-xl text-ink">
             <Wordmark />
           </Link>
-          <nav aria-label="Main" className="hidden md:block">
-            <ul className="flex items-center gap-8 text-sm font-medium">
+          <nav aria-label="Main" className="hidden lg:block">
+            <ul className="flex items-center gap-6 text-sm font-medium whitespace-nowrap xl:gap-7">
+              {parent && (
+                <li className="flex">
+                  <a href={parent.href} className="inline-flex items-center gap-0.5 leading-none text-ink-soft transition-colors hover:text-accent-strong">
+                    <BackArrow />
+                    {parent.label}
+                  </a>
+                </li>
+              )}
               {nav.map((item) => (
-                <li key={item.href}>
-                  <NavLink item={item} className="text-ink-soft transition-colors hover:text-accent-strong" />
+                <li key={item.href} className="flex">
+                  <NavLink item={item} className="inline-flex items-center leading-none text-ink-soft transition-colors hover:text-accent-strong" />
                 </li>
               ))}
             </ul>
@@ -85,12 +104,16 @@ export function SiteShell({
           <div className="flex items-center gap-2">
             {cta && (
               <span className="hidden md:inline-flex">
-                <Link href={cta.href} className={buttonClasses("primary", "py-2.5")}>
-                  {cta.label}
-                </Link>
+                <NavLink item={cta} className={buttonClasses("primary", "py-2.5")} />
               </span>
             )}
             <MobileMenu>
+              {parent && (
+                <a href={parent.href} className="mt-2 flex items-center gap-1 rounded-sm px-3 py-3 font-medium text-ink-soft hover:bg-mist hover:text-ink">
+                  <BackArrow />
+                  {parent.label}
+                </a>
+              )}
               <ul className="grid gap-1 pt-2">
                 {nav.map((item) => (
                   <li key={item.href}>
@@ -98,11 +121,7 @@ export function SiteShell({
                   </li>
                 ))}
               </ul>
-              {cta && (
-                <Link href={cta.href} className={buttonClasses("primary", "mt-3 w-full")}>
-                  {cta.label}
-                </Link>
-              )}
+              {cta && <NavLink item={cta} className={buttonClasses("primary", "mt-3 w-full")} />}
             </MobileMenu>
           </div>
         </Container>

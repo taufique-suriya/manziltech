@@ -2,11 +2,6 @@ import type { FooterColumn, NavItem } from "@manziltech/ui";
 
 export const brand = "ManzilTech";
 
-export const nav: readonly NavItem[] = [
-  { label: "Products", href: "/products" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-];
 
 export const cta: NavItem = { label: "Explore products", href: "/products" };
 
@@ -47,10 +42,17 @@ export const products: readonly Product[] = [
   {
     id: "studio",
     name: "Studio",
-    summary: "Software development for businesses, from first idea to launch and beyond.",
-    features: ["Websites and web apps", "Custom business software", "Cloud setup and support"],
+    summary: "Software and tech services, specialising in travel: AI-rich web and mobile apps, integrations and automation.",
+    features: ["AI-rich web and Android apps", "Travel API integrations", "Custom software and process automation"],
     url: process.env.NEXT_PUBLIC_STUDIO_URL ?? "http://localhost:3003",
   },
+];
+
+// Main menu: each product links straight to its own site, then the hub pages.
+export const nav: readonly NavItem[] = [
+  ...products.map((p) => ({ label: p.name, href: p.url, external: true })),
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 // Full class names per product so Tailwind can find them.

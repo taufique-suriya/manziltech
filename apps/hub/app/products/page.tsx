@@ -13,8 +13,7 @@ export default function ProductsPage() {
           <Eyebrow>Products</Eyebrow>
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Our products</h1>
           <p className="max-w-[60ch] text-lg text-ink-soft">
-            Each ManzilTech product runs on its own site. They are in development; this page links to each one as it
-            opens.
+            Each ManzilTech product runs on its own site, built for its own audience, on one shared platform.
           </p>
         </Container>
       </section>

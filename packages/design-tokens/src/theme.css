@@ -20,12 +20,14 @@
   --mt-on-brand: #ffffff;
 
   --mt-hajjandumrah: #1d8457;
+  --mt-hajjandumrah-strong: #146440;
   --mt-hajjandumrah-warm: #c39033;
   --mt-hajjandumrah-tint: #e3f3ea;
   --mt-bookings: #2f8fd0;
   --mt-bookings-strong: #1f6fa6;
   --mt-bookings-tint: #e3f1fb;
   --mt-studio: #5a5ad6;
+  --mt-studio-strong: #4141b0;
   --mt-studio-tint: #e8e8fb;
 
   /* Footer and other always-dark surfaces keep the same values in both themes. */
@@ -55,12 +57,14 @@
     --mt-on-brand: #04161d;
 
     --mt-hajjandumrah: #3fb47e;
+    --mt-hajjandumrah-strong: #7fd3a9;
     --mt-hajjandumrah-warm: #d9ac55;
     --mt-hajjandumrah-tint: #10342a;
     --mt-bookings: #5aaee6;
     --mt-bookings-strong: #8cc8f0;
     --mt-bookings-tint: #0f2e45;
     --mt-studio: #8b8bf0;
+    --mt-studio-strong: #b4b4f7;
     --mt-studio-tint: #24244d;
 
     --mt-night: #051219;
@@ -91,12 +95,14 @@
   --color-accent-tint: var(--mt-accent-tint);
 
   --color-hajjandumrah: var(--mt-hajjandumrah);
+  --color-hajjandumrah-strong: var(--mt-hajjandumrah-strong);
   --color-hajjandumrah-warm: var(--mt-hajjandumrah-warm);
   --color-hajjandumrah-tint: var(--mt-hajjandumrah-tint);
   --color-bookings: var(--mt-bookings);
   --color-bookings-strong: var(--mt-bookings-strong);
   --color-bookings-tint: var(--mt-bookings-tint);
   --color-studio: var(--mt-studio);
+  --color-studio-strong: var(--mt-studio-strong);
   --color-studio-tint: var(--mt-studio-tint);
 
   --color-night: var(--mt-night);
