@@ -22,6 +22,8 @@ and DNS records are added by hand at Hostinger.
 ## Prerequisites
 - Azure CLI and Terraform 1.16 or newer, signed in with 'az login --tenant <tenant-id>' (multi-factor).
 - The right subscription selected ('az account show').
+- Resource providers 'Microsoft.Web' and 'Microsoft.Resources' registered on the subscription
+  (Terraform's automatic registration is off): 'az provider show --namespace Microsoft.Web --query registrationState -o tsv'.
 
 ## One-time: state storage
 Terraform cannot create the place that holds its own state, so this is done once by hand.
@@ -58,7 +60,7 @@ If a command says a resource provider is not registered, run
 ~~~powershell
 cd infra\terraform\envs\prd
 copy terraform.tfvars.example terraform.tfvars    # then put your subscription ID in it
-terraform init -backend-config=backend.hcl
+terraform init "-backend-config=backend.hcl"    # quotes needed in PowerShell
 terraform plan -out prd.tfplan
 terraform apply prd.tfplan
 ~~~
@@ -94,5 +96,5 @@ terraform output default_host_names
 ## Updating the provider
 The provider version is pinned in 'envs/prd/versions.tf' and recorded in '.terraform.lock.hcl'
 (committed, with Windows and Linux hashes). To upgrade: change the version, run
-'terraform init -upgrade -backend-config=backend.hcl', then
+'terraform init -upgrade "-backend-config=backend.hcl"', then
 'terraform providers lock -platform=windows_amd64 -platform=linux_amd64', and review the plan.
