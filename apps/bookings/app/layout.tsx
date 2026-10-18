@@ -5,7 +5,7 @@ import { IBM_Plex_Mono, IBM_Plex_Sans, Sora } from "next/font/google";
 import { SiteShell } from "@manziltech/ui";
 import { FooterAside } from "@/components/footer-aside";
 import { footerCopyright, footerTagline } from "@/data/template-claims";
-import { brand, cta, footerColumns, nav } from "@/lib/site";
+import { brand, cta, footerColumns, nav, parent } from "@/lib/site";
 import "./globals.css";
 
 // Brand faces (decision 0008), self-hosted by next/font at build time.
@@ -26,6 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <SiteShell
           nav={nav}
           cta={cta}
+          parent={parent}
           link={Link}
           tagline={footerTagline}
           footerColumns={footerColumns}

@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@import "@manziltech/design-tokens/theme.css";
+
+/* Shared components use Tailwind classes too. */
+@source "../../../packages/ui/src";
+
+/* Studio accent: indigo tech tone (decision 0008). */
+:root {
+  --mt-accent: var(--mt-studio);
+  --mt-accent-strong: var(--mt-studio-strong);
+  --mt-accent-tint: var(--mt-studio-tint);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}

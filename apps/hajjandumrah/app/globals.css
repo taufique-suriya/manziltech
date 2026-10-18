@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@import "@manziltech/design-tokens/theme.css";
+
+/* Shared components use Tailwind classes too. */
+@source "../../../packages/ui/src";
+
+/* Hajj and Umrah accent: green with warm gold (decision 0008). */
+:root {
+  --mt-accent: var(--mt-hajjandumrah);
+  --mt-accent-strong: var(--mt-hajjandumrah-strong);
+  --mt-accent-tint: var(--mt-hajjandumrah-tint);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}

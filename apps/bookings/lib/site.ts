@@ -26,3 +26,6 @@ export const footerColumns: readonly FooterColumn[] = [
     ],
   },
 ];
+
+// Header button back to the ManzilTech hub.
+export const parent: NavItem = { label: "ManzilTech Hub", href: hubUrl, external: true };

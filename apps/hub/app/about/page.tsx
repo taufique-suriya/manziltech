@@ -57,7 +57,6 @@ export default function AboutPage() {
               We start with travellers and businesses in India and grow from there. Our products share one platform for
               accounts, agents, checkout and payments, so each new product starts on solid ground.
             </p>
-            <p>We are early, and we would rather be clear about that than make big claims.</p>
             <div>
               <Link href="/contact" className={buttonClasses("primary")}>
                 Get in touch
