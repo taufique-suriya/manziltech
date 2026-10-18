@@ -1,0 +1,39 @@
+name: Deploy hajjandumrah
+
+# On merge to master (changes to this app, shared packages or the lockfile) or by hand:
+# deploy to staging, then to production once the owner approves the 'prd' environment.
+on:
+  push:
+    branches: [master]
+    paths:
+      - "apps/hajjandumrah/**"
+      - "packages/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "turbo.json"
+      - ".nvmrc"
+      - ".github/workflows/deploy-hajjandumrah.yml"
+      - ".github/workflows/deploy-app.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stg:
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app: hajjandumrah
+      key: HAJJANDUMRAH
+      environment: stg
+    secrets: inherit
+
+  prd:
+    needs: stg
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app: hajjandumrah
+      key: HAJJANDUMRAH
+      environment: prd
+    secrets: inherit
