@@ -19,6 +19,16 @@ coverage/
 next-env.d.ts
 .pnpm-store/
 
+# Terraform (state can hold secrets; the lock file .terraform.lock.hcl IS committed)
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfplan
+crash.log
+override.tf
+override.tf.json
+
 # Secrets and local settings (use .NET user-secrets)
 .env
 .env.*
