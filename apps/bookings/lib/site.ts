@@ -12,7 +12,7 @@ export const nav: readonly NavItem[] = [
 
 export const cta: NavItem = { label: "Book Now", href: "/packages" };
 
-export const hubUrl = process.env.NEXT_PUBLIC_HUB_URL ?? "http://localhost:3000";
+export const hubUrl = process.env.NEXT_PUBLIC_HUB_URL || "http://localhost:3000";
 
 export const footerColumns: readonly FooterColumn[] = [
   {

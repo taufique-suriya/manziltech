@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   title: "Studio | ManzilTech",
   description:
     "Software development and tech services from ManzilTech. AI-rich web and mobile apps, travel API integrations, process automation and custom software.",
+  // Only production may be indexed; local and staging builds stay out of search engines.
+  robots: process.env.NEXT_PUBLIC_SITE_ENV === "prd" ? undefined : { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
