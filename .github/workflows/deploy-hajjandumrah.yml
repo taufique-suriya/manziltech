@@ -1,0 +1,61 @@
+name: Deploy hajjandumrah
+
+# Deploying hajjandumrah (decisions 0009 and 0010). Nothing deploys to prd without your approval.
+#
+# 1. Merge to master (changes to this app, shared packages or the lockfile):
+#    stg deploys, then prd waits for approval of the 'prd' environment. Not approved: stays on stg only.
+# 2. Hot fix straight to prd, leaving stg untouched:
+#    set the repository variable STG_PAUSED to 'true' (Settings, Secrets and variables, Actions, Variables),
+#    merge the fix (nothing deploys), then Actions, 'Deploy hajjandumrah', Run workflow on master, target 'prd-only'.
+#    Set STG_PAUSED back to 'false' (or delete it) afterwards.
+# 3. By hand: Run workflow with target 'stg-then-prd', 'stg-only' or 'prd-only'.
+#    Production is only deployed from master.
+on:
+  push:
+    branches: [master]
+    paths:
+      - "apps/hajjandumrah/**"
+      - "packages/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "turbo.json"
+      - ".nvmrc"
+      - ".github/workflows/deploy-hajjandumrah.yml"
+      - ".github/workflows/deploy-app.yml"
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Where to deploy"
+        type: choice
+        options:
+          - stg-then-prd
+          - prd-only
+          - stg-only
+        default: stg-then-prd
+
+permissions:
+  contents: read
+
+jobs:
+  stg:
+    # Push: yes, unless STG_PAUSED is 'true'. By hand: unless the target is prd-only.
+    if: ${{ (github.event_name == 'push' && vars.STG_PAUSED != 'true') || (github.event_name == 'workflow_dispatch' && inputs.target != 'prd-only') }}
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app: hajjandumrah
+      key: HAJJANDUMRAH
+      environment: stg
+    secrets: inherit
+
+  prd:
+    needs: stg
+    # Push: only after stg succeeded. By hand: unless the target is stg-only (a skipped stg is fine
+    # for prd-only; a failed stg always stops prd). The job then waits for the owner's approval.
+    if: ${{ !cancelled() && needs.stg.result != 'failure' && ((github.event_name == 'push' && needs.stg.result == 'success') || (github.event_name == 'workflow_dispatch' && inputs.target != 'stg-only')) }}
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app: hajjandumrah
+      key: HAJJANDUMRAH
+      environment: prd
+    secrets: inherit
