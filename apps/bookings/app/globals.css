@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@import "@manziltech/design-tokens/theme.css";
+
+/* Shared components use Tailwind classes too. */
+@source "../../../packages/ui/src";
+
+/* Bookings accent: calm sky blue (decision 0008). */
+:root {
+  --mt-accent: var(--mt-bookings);
+  --mt-accent-strong: var(--mt-bookings-strong);
+  --mt-accent-tint: var(--mt-bookings-tint);
+}
+
+@theme {
+  --animate-fade-in: fade-in 0.6s ease-out;
+  --animate-fade-in-up: fade-in-up 0.7s ease-out;
+  --animate-fade-in-down: fade-in-down 0.7s ease-out;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in-down {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Helper classes carried over from the live site, restyled with brand tokens. */
+@utility container-page {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+@utility btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-sm bg-accent px-6 py-3 text-sm font-semibold text-on-brand transition-colors duration-300 hover:bg-accent-strong;
+}
+@utility btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-sm border border-line bg-paper px-6 py-3 text-sm font-semibold text-ink transition-colors duration-300 hover:border-accent hover:text-accent-strong;
+}
+@utility btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-sm border border-white/40 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/10;
+}
+@utility section-label {
+  @apply mb-3 inline-block font-mono text-xs font-medium tracking-[0.14em] text-accent-strong uppercase;
+}
+@utility card-hover {
+  @apply transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-night/10;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after { animation: none !important; transition: none !important; }
+}

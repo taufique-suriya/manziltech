@@ -1,5 +1,5 @@
-import { Placeholder } from "@manziltech/ui";
+import { HomeView } from "@/views/home-view";
 
 export default function HomePage() {
-  return <Placeholder title="Bookings | ManzilTech" />;
+  return <HomeView />;
 }

@@ -20,7 +20,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
-      <body>
+      {/* Browser extensions (e.g. Grammarly) add attributes to body before React loads. */}
+      <body suppressHydrationWarning>
         <SiteShell
           nav={nav}
           cta={cta}
