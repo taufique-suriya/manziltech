@@ -93,6 +93,28 @@ terraform output default_host_names
 4. The root domain (manziltech.com) uses 'validation_type = "dns-txt-token"' and depends on what
    Hostinger supports; see decision 0010 before touching it.
 
+## Root domain (manual, outside Terraform)
+Hostinger has no ALIAS/ANAME record, so the root domain uses an A record (decision 0010).
+These were set up in the Azure portal and at Hostinger, not in Terraform:
+
+- 'swa-manziltech-hub-prd', Custom domains: 'manziltech.com' added with TXT validation
+  (TXT record on '@' at Hostinger, keep it), and 'www.manziltech.com' set as the **default** domain,
+  so the root and the azurestaticapps.net address redirect (301) to https://www.manziltech.com.
+- Hostinger: A record '@' -> 20.247.40.76, the hub's stable inbound IP.
+
+Read the current IP (the plain 'az staticwebapp show' does not return it):
+
+~~~powershell
+az rest --method get --url "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/rg-manziltech-prd/providers/Microsoft.Web/staticSites/swa-manziltech-hub-prd?api-version=2024-04-01" --query "properties.stableInboundIP" -o tsv
+~~~
+
+Guards:
+- The Static Web Apps have 'prevent_destroy': Terraform refuses to delete or recreate them, because
+  a new site gets a new IP and host name. To delete one on purpose, remove that line first.
+- The workflow 'Check root domain' runs every Monday and fails (GitHub emails the owner) if the root
+  stops resolving to that IP or stops redirecting to www. If the IP changes on purpose, update the
+  A record at Hostinger, 'EXPECTED_IP' in '.github/workflows/check-root-domain.yml' and this section.
+
 ## Updating the provider
 The provider version is pinned in 'envs/prd/versions.tf' and recorded in '.terraform.lock.hcl'
 (committed, with Windows and Linux hashes). To upgrade: change the version, run
