@@ -6,10 +6,14 @@ resource "azurerm_static_web_app" "this" {
   sku_size            = "Free"
   tags                = var.tags
 
-  # The deploy workflow's upload records the repository and branch on the site. Terraform does not
-  # manage them, so leave them alone instead of clearing them on every plan.
   lifecycle {
+    # The deploy workflow's upload records the repository and branch on the site. Terraform does not
+    # manage them, so leave them alone instead of clearing them on every plan.
     ignore_changes = [repository_url, repository_branch]
+
+    # A recreated site gets a new host name and a new stable inbound IP, which breaks the DNS records
+    # (the root domain's A record points at the hub's IP). Remove this line on purpose to delete a site.
+    prevent_destroy = true
   }
 }
 

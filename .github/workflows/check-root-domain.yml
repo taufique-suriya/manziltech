@@ -1,0 +1,39 @@
+name: Check root domain
+
+# Weekly guard for the root domain (decision 0010). manziltech.com has an A record at Hostinger that
+# points at the hub's stable inbound IP, and the hub redirects it to www (default domain). If the IP
+# changes or the certificate breaks, this run fails and GitHub emails the owner.
+on:
+  schedule:
+    - cron: "30 3 * * 1" # Mondays 03:30 UTC (09:00 IST)
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      ROOT: manziltech.com
+      WWW: https://www.manziltech.com/
+      EXPECTED_IP: "20.247.40.76" # 'stableInboundIP' of swa-manziltech-hub-prd, see infra/README.md
+    steps:
+      - name: Root domain resolves to the hub's IP
+        run: |
+          actual=$(dig +short A "$ROOT" @1.1.1.1 | sort | tr '\n' ' ' | xargs)
+          echo "A $ROOT = $actual (expected $EXPECTED_IP)"
+          test "$actual" = "$EXPECTED_IP"
+
+      - name: Root redirects to www over HTTPS
+        run: |
+          read -r code location < <(curl -sS -o /dev/null -w '%{http_code} %{redirect_url}' "https://$ROOT/")
+          echo "https://$ROOT/ -> $code $location"
+          test "$code" = "301"
+          test "$location" = "$WWW"
+
+      - name: www answers
+        run: |
+          code=$(curl -sS -o /dev/null -w '%{http_code}' "$WWW")
+          echo "$WWW -> $code"
+          test "$code" = "200"
