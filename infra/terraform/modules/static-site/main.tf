@@ -5,6 +5,12 @@ resource "azurerm_static_web_app" "this" {
   sku_tier            = "Free"
   sku_size            = "Free"
   tags                = var.tags
+
+  # The deploy workflow's upload records the repository and branch on the site. Terraform does not
+  # manage them, so leave them alone instead of clearing them on every plan.
+  lifecycle {
+    ignore_changes = [repository_url, repository_branch]
+  }
 }
 
 # Each custom domain is validated through DNS. 'cname-delegation' (subdomains) waits until the
