@@ -7,3 +7,8 @@ export { Container, Eyebrow, Section } from "./layout";
 export type { SectionProps } from "./layout";
 export { ProductMark } from "./product-mark";
 export type { Product, ProductMarkProps } from "./product-mark";
+export { contacts, emergency, formatPhone, telHref, whatsappHref } from "./contact";
+export type { ContactProduct, Phone, ProductContact } from "./contact";
+export { ContactPage } from "./contact-page";
+export type { ContactPageProps, ContactProductLink } from "./contact-page";
+export type { ContactTopic } from "./contact-form";

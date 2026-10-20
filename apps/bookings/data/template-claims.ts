@@ -4,6 +4,7 @@
 // Replace or remove every item in this file before Bookings goes live.
 // Inline claims in the views are marked with a "TEMPLATE CLAIM" comment.
 
+import { contacts, emergency, telHref, whatsappHref } from "@manziltech/ui";
 import {
   Award,
   Clock,
@@ -11,6 +12,7 @@ import {
   Headphones,
   Mail,
   MapPin,
+  MessageCircle,
   Phone,
   Plane,
   Shield,
@@ -122,14 +124,18 @@ export const team = [
   { name: "Amara Johnson", role: "Customer Experience", image: "https://images.pexels.com/photos/4901940/pexels-photo-4901940.jpeg?auto=compress&cs=tinysrgb&h=400&w=400" },
 ];
 
-export const phone = { display: "1-800-555-0199", href: "tel:+18005550199" };
+// Phone, WhatsApp and email come from the central contact config (packages/ui/src/contact.ts).
+export const phone = { display: contacts.bookings.phone.display, href: telHref(contacts.bookings.phone) };
+export const whatsapp = { display: contacts.bookings.whatsapp.display, href: whatsappHref(contacts.bookings.whatsapp) };
+export const emergencyPhone = { display: emergency.display, href: telHref(emergency) };
 export const address = ["123 Adventure Plaza", "New York, NY 10001"];
-export const emails = ["hello@manziltech.com", "support@manziltech.com"];
+export const emails = contacts.bookings.emails;
 
 export const contactInfo = [
   { icon: MapPin, title: "Visit Us", lines: address },
-  { icon: Phone, title: "Call Us", lines: [phone.display, "Mon-Sat, 9am-7pm EST"] },
-  { icon: Mail, title: "Email Us", lines: emails },
+  { icon: Phone, title: "Call Us", href: phone.href, lines: [phone.display, "Mon-Sat, 9am-7pm EST"] },
+  { icon: MessageCircle, title: "WhatsApp", href: whatsapp.href, lines: [whatsapp.display, "Message us on WhatsApp"] },
+  { icon: Mail, title: "Email Us", href: `mailto:${emails[0] ?? ""}`, lines: emails },
   { icon: Clock, title: "Office Hours", lines: ["Mon-Fri: 9am-7pm", "Sat-Sun: 10am-5pm"] },
 ];
 

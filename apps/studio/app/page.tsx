@@ -68,7 +68,7 @@ export default function StudioPage() {
               Travel is our home ground, but not our limit.
             </p>
             <div className="flex flex-wrap gap-3">
-              <a href="#contact" className={buttonClasses("primary")}>
+              <a href={contactUrl} className={buttonClasses("primary")}>
                 Start a project <ArrowRight className="size-4" />
               </a>
               <a href="#services" className={buttonClasses("secondary", "border-white/30 text-white hover:border-white hover:text-white")}>
