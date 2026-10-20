@@ -15,7 +15,7 @@ type Slide = {
 const slides: readonly Slide[] = [
   { id: 36573970, caption: "The Kaaba, Makkah", position: "50% 35%" },
   { id: 33840568, caption: "Al-Masjid an-Nabawi, Madinah", position: "50% 52%" },
-  { id: 27291499, caption: "Abraj Al Bait Clock Tower, Makkah", position: "50% 40%" },
+  { id: 27291499, caption: "Abraj Al Bait Clock Tower, Makkah", position: "50% 0%" },
 ];
 
 const src = (id: number, width: number) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${width}`;
