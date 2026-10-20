@@ -4,16 +4,17 @@ export const hubUrl = process.env.NEXT_PUBLIC_HUB_URL || "http://localhost:3000"
 const hajjUrl = process.env.NEXT_PUBLIC_HAJJANDUMRAH_URL || "http://localhost:3001";
 const bookingsUrl = process.env.NEXT_PUBLIC_BOOKINGS_URL || "http://localhost:3002";
 
-export const contactUrl = `${hubUrl}/contact`;
+// The Studio contact page (every product has its own).
+export const contactUrl = "/contact/";
 
 export const nav: readonly NavItem[] = [
   { label: "Services", href: "#services" },
   { label: "Travel tech", href: "#travel" },
   { label: "How we work", href: "#process" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
-export const cta: NavItem = { label: "Start a project", href: "#contact" };
+export const cta: NavItem = { label: "Start a project", href: "/contact" };
 
 export const footerColumns: readonly FooterColumn[] = [
   {
@@ -30,7 +31,7 @@ export const footerColumns: readonly FooterColumn[] = [
       { label: "ManzilTech home", href: hubUrl, external: true },
       { label: "Hajj and Umrah", href: hajjUrl, external: true },
       { label: "Bookings", href: bookingsUrl, external: true },
-      { label: "Contact", href: contactUrl, external: true },
+      { label: "Contact", href: "/contact" },
     ],
   },
 ];

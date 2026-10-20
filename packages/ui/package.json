@@ -12,13 +12,15 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@manziltech/design-tokens": "workspace:*"
+    "@manziltech/design-tokens": "workspace:*",
+    "@manziltech/validation": "workspace:*"
   },
   "peerDependencies": {
     "react": "catalog:"
   },
   "devDependencies": {
     "@manziltech/config": "workspace:*",
+    "@types/node": "catalog:",
     "@types/react": "catalog:",
     "eslint": "catalog:",
     "react": "catalog:",

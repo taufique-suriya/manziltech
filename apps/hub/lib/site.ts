@@ -5,9 +5,6 @@ export const brand = "ManzilTech";
 
 export const cta: NavItem = { label: "Explore products", href: "/products" };
 
-// Optional: shown on the contact page only when set.
-export const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "";
-
 export type ProductAccent = "hajjandumrah" | "bookings" | "studio";
 
 export type Product = {

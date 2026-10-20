@@ -2,6 +2,7 @@
 
 // Copied from the live site (manziltech-pages) and restyled with ManzilTech tokens.
 import { Photo } from '@/components/photo';
+import { limits } from '@manziltech/validation';
 import { useNavigate } from '@/components/use-navigate';
 import { useState, useMemo } from 'react';
 import {
@@ -88,6 +89,7 @@ export function DestinationsView() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search destinations or countries..."
+                maxLength={limits.search}
                 className="w-full pl-12 pr-4 py-3 rounded-full bg-mist border border-line text-sm text-ink placeholder:text-muted focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent-tint transition-all"
               />
             </div>

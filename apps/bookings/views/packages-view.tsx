@@ -2,6 +2,7 @@
 
 // Copied from the live site (manziltech-pages) and restyled with ManzilTech tokens.
 import { Photo } from '@/components/photo';
+import { limits } from '@manziltech/validation';
 import { useNavigate } from '@/components/use-navigate';
 import { useState, useMemo } from 'react';
 import {
@@ -89,6 +90,7 @@ export function PackagesView() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search packages..."
+                maxLength={limits.search}
                 className="w-full pl-11 pr-4 py-2.5 rounded-full bg-mist border border-line text-sm text-ink placeholder:text-muted focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent-tint transition-all"
               />
             </div>

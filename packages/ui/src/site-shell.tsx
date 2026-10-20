@@ -32,6 +32,9 @@ export type SiteShellProps = {
   footerAside?: ReactNode;
   footerNote?: ReactNode;
   tagline?: ReactNode;
+  // Extra last item of the menu (for example a sign-in control), for large screens and for the phone menu.
+  navExtra?: ReactNode;
+  mobileNavExtra?: ReactNode;
   // Apps pass their router's link (next/link) so the package stays framework-free.
   link?: ComponentType<LinkProps>;
   children: ReactNode;
@@ -62,6 +65,8 @@ export function SiteShell({
   footerAside,
   footerNote,
   tagline = "Travel and technology under one brand. Built in India.",
+  navExtra,
+  mobileNavExtra,
   link = PlainLink,
   children,
 }: SiteShellProps) {
@@ -99,6 +104,7 @@ export function SiteShell({
                   <NavLink item={item} className="inline-flex items-center leading-none text-ink-soft transition-colors hover:text-accent-strong" />
                 </li>
               ))}
+              {navExtra && <li className="relative flex">{navExtra}</li>}
             </ul>
           </nav>
           <div className="flex items-center gap-2">
@@ -120,6 +126,7 @@ export function SiteShell({
                     <NavLink item={item} className="block rounded-sm px-3 py-3 font-medium text-ink-soft hover:bg-mist hover:text-ink" />
                   </li>
                 ))}
+                {mobileNavExtra && <li>{mobileNavExtra}</li>}
               </ul>
               {cta && <NavLink item={cta} className={buttonClasses("primary", "mt-3 w-full")} />}
             </MobileMenu>

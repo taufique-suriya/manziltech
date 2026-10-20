@@ -1,9 +1,10 @@
 "use client";
 
 // Copied from the live site (manziltech-pages) and restyled with ManzilTech tokens.
-import { contactInfo, phone, whyReachOut } from '@/data/template-claims';
+import { contactInfo, emergencyPhone, whyReachOut } from '@/data/template-claims';
+import { limits, validateDate, validateEmail, validateMessage, validateMobile, validateName } from '@manziltech/validation';
 import { Photo } from '@/components/photo';
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useState, type ChangeEvent, type FocusEvent, type FormEvent } from "react";
 import {
   MapPin,
   Phone,
@@ -25,13 +26,42 @@ export function ContactView() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string | undefined>>({});
+
+  // Central rules (packages/validation); the same wording is used on every form.
+  const check = (name: string, value: string): string | undefined => {
+    switch (name) {
+      case 'name':
+        return validateName(value) ?? undefined;
+      case 'email':
+        return validateEmail(value) ?? undefined;
+      case 'phone':
+        return validateMobile(value, { required: false }) ?? undefined;
+      case 'date':
+        return validateDate(value, { label: 'the travel date', required: false, notBefore: new Date().toISOString().slice(0, 10) }) ?? undefined;
+      case 'message':
+        return validateMessage(value) ?? undefined;
+      default:
+        return undefined;
+    }
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+    if (errors[name]) setErrors({ ...errors, [name]: check(name, value) });
+  };
+
+  const handleBlur = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setErrors({ ...errors, [e.target.name]: check(e.target.name, e.target.value) });
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    const found: Record<string, string | undefined> = {};
+    for (const name of ['name', 'email', 'phone', 'date', 'message'] as const) found[name] = check(name, form[name]);
+    setErrors(found);
+    if (Object.values(found).some(Boolean)) return;
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
@@ -71,9 +101,11 @@ export function ContactView() {
       {/* Contact Info Cards */}
       <section className="py-16 bg-paper">
         <div className="container-page">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {contactInfo.map((info, i) => (
-              <div key={i} className="group p-6 rounded-lg bg-mist border border-line card-hover hover:bg-paper text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {contactInfo.map((info, i) => {
+              const Wrapper = "href" in info && info.href ? "a" : "div";
+              return (
+              <Wrapper key={i} {...("href" in info && info.href ? { href: info.href } : {})} className="group p-6 rounded-lg bg-mist border border-line card-hover hover:bg-paper text-center">
                 <div className="inline-flex p-3 rounded-md bg-accent-tint mb-4 group-hover:bg-accent transition-all duration-500 mx-auto">
                   <info.icon className="w-6 h-6 text-accent group-hover:text-white transition-colors" />
                 </div>
@@ -81,8 +113,9 @@ export function ContactView() {
                 {info.lines.map((line, j) => (
                   <p key={j} className="text-sm text-muted">{line}</p>
                 ))}
-              </div>
-            ))}
+              </Wrapper>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -113,7 +146,7 @@ export function ContactView() {
                   <p className="text-muted">Thank you for reaching out. We'll be in touch soon.</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} noValidate className="space-y-5">
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm font-semibold text-ink mb-2">Full Name</label>
@@ -124,11 +157,13 @@ export function ContactView() {
                           name="name"
                           value={form.name}
                           onChange={handleChange}
-                          required
+                          onBlur={handleBlur}
+                          maxLength={limits.name.max}
                           placeholder="John Doe"
                           className="w-full pl-11 pr-4 py-3 rounded-md bg-paper border border-line text-sm text-ink placeholder:text-muted focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent-tint transition-all"
                         />
                       </div>
+                      {errors.name && <p role="alert" className="mt-1.5 text-xs font-medium text-danger">{errors.name}</p>}
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-ink mb-2">Email Address</label>
@@ -139,11 +174,13 @@ export function ContactView() {
                           name="email"
                           value={form.email}
                           onChange={handleChange}
-                          required
+                          onBlur={handleBlur}
+                          maxLength={limits.email}
                           placeholder="john@example.com"
                           className="w-full pl-11 pr-4 py-3 rounded-md bg-paper border border-line text-sm text-ink placeholder:text-muted focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent-tint transition-all"
                         />
                       </div>
+                      {errors.email && <p role="alert" className="mt-1.5 text-xs font-medium text-danger">{errors.email}</p>}
                     </div>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-5">
@@ -156,10 +193,13 @@ export function ContactView() {
                           name="phone"
                           value={form.phone}
                           onChange={handleChange}
+                          onBlur={handleBlur}
+                          maxLength={20}
                           placeholder="+1 (555) 000-0000"
                           className="w-full pl-11 pr-4 py-3 rounded-md bg-paper border border-line text-sm text-ink placeholder:text-muted focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent-tint transition-all"
                         />
                       </div>
+                      {errors.phone && <p role="alert" className="mt-1.5 text-xs font-medium text-danger">{errors.phone}</p>}
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-ink mb-2">Travel Date</label>
@@ -170,9 +210,12 @@ export function ContactView() {
                           name="date"
                           value={form.date}
                           onChange={handleChange}
+                          onBlur={handleBlur}
+                          min={new Date().toISOString().slice(0, 10)}
                           className="w-full pl-11 pr-4 py-3 rounded-md bg-paper border border-line text-sm text-ink placeholder:text-muted focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent-tint transition-all"
                         />
                       </div>
+                      {errors.date && <p role="alert" className="mt-1.5 text-xs font-medium text-danger">{errors.date}</p>}
                     </div>
                   </div>
                   <div>
@@ -204,11 +247,13 @@ export function ContactView() {
                       name="message"
                       value={form.message}
                       onChange={handleChange}
-                      required
+                      onBlur={handleBlur}
+                      maxLength={limits.message.max}
                       rows={5}
                       placeholder="Tell us about your dream trip..."
                       className="w-full px-4 py-3 rounded-md bg-paper border border-line text-sm text-ink placeholder:text-muted focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent-tint transition-all resize-none"
                     />
+                    {errors.message && <p role="alert" className="mt-1.5 text-xs font-medium text-danger">{errors.message}</p>}
                   </div>
                   <button type="submit" className="btn-primary w-full text-base py-4">
                     <Send className="w-4 h-4" />
@@ -245,11 +290,11 @@ export function ContactView() {
                   Already on a trip and need urgent assistance? Call our 24/7 hotline.
                 </p>
                 <a
-                  href={phone.href}
+                  href={emergencyPhone.href}
                   className="flex items-center gap-2 text-accent font-semibold hover:text-accent-tint transition-colors"
                 >
                   <Phone className="w-4 h-4" />
-                  {phone.display}
+                  {emergencyPhone.display}
                 </a>
               </div>
             </div>
