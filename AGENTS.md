@@ -5,7 +5,7 @@
 ```
 ManzilTech.slnx              .NET solution (root)
 apps/       hub, hajjandumrah, bookings, studio     Next.js + TypeScript, one app per subdomain
-packages/   config, design-tokens, ui, api-client   shared frontend code
+packages/   config, design-tokens, ui, validation, api-client   shared frontend code
 src/
   ManzilTech.Host/           the single ASP.NET Core host (modular monolith, .NET 10)
   ManzilTech.SharedKernel/   technical base types only, no business data

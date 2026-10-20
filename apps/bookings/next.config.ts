@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   // Pages become folders with index.html ('/about/'), which static hosts serve without rewrites.
   trailingSlash: true,
   // Shared packages ship TypeScript source; Next.js compiles them.
-  transpilePackages: ["@manziltech/ui", "@manziltech/design-tokens"],
+  transpilePackages: ["@manziltech/ui", "@manziltech/design-tokens", "@manziltech/validation"],
 };
 
 export default nextConfig;

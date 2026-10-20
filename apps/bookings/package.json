@@ -14,6 +14,7 @@
   "dependencies": {
     "@manziltech/design-tokens": "workspace:*",
     "@manziltech/ui": "workspace:*",
+    "@manziltech/validation": "workspace:*",
     "lucide-react": "catalog:",
     "next": "catalog:",
     "react": "catalog:",

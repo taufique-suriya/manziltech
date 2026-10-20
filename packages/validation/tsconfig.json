@@ -1,0 +1,4 @@
+{
+  "extends": "@manziltech/config/tsconfig/base.json",
+  "include": ["src"]
+}
