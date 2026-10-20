@@ -19,6 +19,10 @@
   --mt-signal: #1fb8cf;
   --mt-on-brand: #ffffff;
 
+  /* Errors and required-field markers. */
+  --mt-danger: #c62828;
+  --mt-danger-tint: #fdecea;
+
   --mt-hajjandumrah: #1d8457;
   --mt-hajjandumrah-strong: #146440;
   --mt-hajjandumrah-warm: #c39033;
@@ -56,6 +60,9 @@
     --mt-signal: #4fd6ea;
     --mt-on-brand: #04161d;
 
+    --mt-danger: #ff8a80;
+    --mt-danger-tint: #3d1a1a;
+
     --mt-hajjandumrah: #3fb47e;
     --mt-hajjandumrah-strong: #7fd3a9;
     --mt-hajjandumrah-warm: #d9ac55;
@@ -89,6 +96,8 @@
   --color-brand-tint: var(--mt-brand-tint);
   --color-signal: var(--mt-signal);
   --color-on-brand: var(--mt-on-brand);
+  --color-danger: var(--mt-danger);
+  --color-danger-tint: var(--mt-danger-tint);
 
   --color-accent: var(--mt-accent);
   --color-accent-strong: var(--mt-accent-strong);
